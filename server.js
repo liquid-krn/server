@@ -8,28 +8,31 @@ const saltRounds = 10;
 require('dotenv').config();
 
 
-// const db = knex({
-//   client: 'pg',
-//   connection: {
-//     host: '127.0.0.1',
-//     user: 'postgres',
-//     password: process.env.DBPASSWORD,
-//     database: 'moviedb',
-//   },
-// });
-
 const db = knex({
   client: 'pg',
-  connection: process.env.DATABASE_URL + '?sslmode=require',
-  ssl: { rejectUnauthorized: false },
+  connection: {
+    host: '127.0.0.1',
+    user: 'postgres',
+    password: process.env.DBPASSWORD,
+    database: 'moviedb',
+  },
 });
 
-module.exports = db;
+// const db = knex({
+//   client: 'pg',
+//   connection: process.env.DATABASE_URL + '?sslmode=require',
+//   ssl: { rejectUnauthorized: false },
+// });
+//
+// module.exports = db;
 
 
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get('/',(req,res)=>{
+  res.send('working')
+})
 
 app.post('/signup', async (req, res) => {
   const { email, password, repassword } = req.body;
