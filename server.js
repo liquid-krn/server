@@ -11,8 +11,8 @@ require('dotenv').config();
 const db = knex({
   client: 'pg',
   connection: {
-    host: '127.0.0.1',
-    user: 'postgres',
+    host: 'dpg-csb4ikogph6c73a9mrfg-a',
+    user: 'moviedb_3ibs_user',
     password: process.env.DBPASSWORD,
     database: 'moviedb',
   },
