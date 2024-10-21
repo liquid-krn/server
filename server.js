@@ -8,23 +8,23 @@ const saltRounds = 10;
 require('dotenv').config();
 
 
-const db = knex({
-  client: 'pg',
-  connection: {
-    host: '127.0.0.1',
-    user: 'postgres',
-    password: process.env.DBPASSWORD,
-    database: 'moviedb',
-  },
-});
-
 // const db = knex({
 //   client: 'pg',
-//   connection: process.env.DATABASE_URL + '?sslmode=require',
-//   ssl: { rejectUnauthorized: false },
+//   connection: {
+//     host: '127.0.0.1',
+//     user: 'postgres',
+//     password: process.env.DBPASSWORD,
+//     database: 'moviedb',
+//   },
 // });
-//
-// module.exports = db;
+
+const db = knex({
+  client: 'pg',
+  connection: process.env.DATABASE_URL,
+  ssl: true
+});
+
+module.exports = db;
 
 
 app.use(bodyParser.json());
