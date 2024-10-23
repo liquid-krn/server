@@ -20,11 +20,11 @@ require('dotenv').config();
 
 const db = knex({
   client: 'pg',
-  connection: process.env.DATABASE_URL,
-  ssl: true
+  connection: {
+     connectionString: process.env.DATABASE_URL,
+     ssl: { rejectUnauthorized: false }
+  }
 });
-
-module.exports = db;
 
 
 app.use(bodyParser.json());
@@ -53,20 +53,18 @@ app.post('/signup', async (req, res) => {
           console.error(err);
           return res.status(500).json('Error hashing password');
         }
-
         await db('users').insert({
           email,
           password: hash,
           created_at: date,
         });
-
         console.log('User registered successfully');
         return res.json('Signup success');
       });
     }
   } catch (err) {
     console.error(err);
-    res.status(500).json('Internal server error');
+    res.status(500).json('Server error');
   }
 });
 
