@@ -26,7 +26,7 @@ require('dotenv').config();
 //   }
 // });
 
-const knex = require('knex')({
+const db = require('knex')({
   client: 'pg',
   connection: {
     host: 'csbcmedumphs73agq6q0-a.oregon-postgres.render.com',
