@@ -18,11 +18,22 @@ require('dotenv').config();
 //   },
 // });
 
-const db = knex({
+// const db = knex({
+//   client: 'pg',
+//   connection: {
+//      connectionString: process.env.DATABASE_URL,
+//      ssl: { rejectUnauthorized: false }
+//   }
+// });
+
+const knex = require('knex')({
   client: 'pg',
   connection: {
-     connectionString: process.env.DATABASE_URL,
-     ssl: { rejectUnauthorized: false }
+    host: 'csbcmedumphs73agq6q0-a.oregon-postgres.render.com',
+    user: 'users',
+    password: 'LBX0CtG2e5A25qRmMbz0QTELWQBWRQyu',
+    database: 'moviedb_6bvk',
+    ssl: { rejectUnauthorized: false }
   }
 });
 
