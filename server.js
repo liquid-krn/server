@@ -7,7 +7,6 @@ const app = express();
 const saltRounds = 10;
 require('dotenv').config();
 
-<<<<<<< HEAD
 const db = require('knex')({
   client: 'pg',
   connection: {
@@ -15,42 +14,10 @@ const db = require('knex')({
     user:process.env.DBUSER ,
     password:process.env.DBPASSWORD ,
     database:process.env.DBDATABASE ,
-=======
-
-// const db = knex({
-//   client: 'pg',
-//   connection: {
-//     host: '127.0.0.1',
-//     user: 'postgres',
-//     password: process.env.DBPASSWORD,
-//     database: 'moviedb',
-//   },
-// });
-
-// const db = knex({
-//   client: 'pg',
-//   connection: {
-//      connectionString: process.env.DATABASE_URL,
-//      ssl: { rejectUnauthorized: false }
-//   }
-// });
-
-const db = require('knex')({
-  client: 'pg',
-  connection: {
-    host: 'csbcmedumphs73agq6q0-a.oregon-postgres.render.com',
-    user: 'users',
-    password: 'LBX0CtG2e5A25qRmMbz0QTELWQBWRQyu',
-    database: 'moviedb_6bvk',
->>>>>>> 35029a3632bab580b24ea3f407b3718acedf4240
     ssl: { rejectUnauthorized: false }
   }
 });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 35029a3632bab580b24ea3f407b3718acedf4240
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -65,15 +32,8 @@ app.post('/signup', async (req, res) => {
   if (password !== repassword) {
     return res.status(400).json('Passwords do not match');
   }
-<<<<<<< HEAD
   try {
     const users = await db('users').where({ email }).select('*');
-=======
-
-  try {
-    const users = await db('users').where({ email }).select('*');
-
->>>>>>> 35029a3632bab580b24ea3f407b3718acedf4240
     if (users.length > 0) {
       return res.status(400).json('User already exists');
     } else {
@@ -99,22 +59,11 @@ app.post('/signup', async (req, res) => {
 
 app.post('/signin', async (req, res) => {
   const { email, password } = req.body;
-<<<<<<< HEAD
   try {
     const users = await db('users').where({ email }).select('*');
     if (users.length > 0) {
       const user = users[0];
       const isMatch = await bcrypt.compare(password, user.password);
-=======
-
-  try {
-    const users = await db('users').where({ email }).select('*');
-
-    if (users.length > 0) {
-      const user = users[0];
-      const isMatch = await bcrypt.compare(password, user.password);
-
->>>>>>> 35029a3632bab580b24ea3f407b3718acedf4240
       if (isMatch) {
         res.json('success');
         console.log('User logged in successfully');
@@ -130,12 +79,6 @@ app.post('/signin', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 35029a3632bab580b24ea3f407b3718acedf4240
 app.listen(process.env.PORT || 3001, function () {
   console.log('Server working on port 3001');
 });
