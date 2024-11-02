@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const knex = require('knex');
-const path = require('path');
 const app = express();
 const saltRounds = 10;
 require('dotenv').config();
@@ -22,12 +21,9 @@ const db = require('knex')({
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.get('/',(req,res)=>{
-//   res.send('working')
-// })
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-});
+app.get('/',(req,res)=>{
+  res.send('working')
+})
 
 app.post('/signup', async (req, res) => {
   const { email, password, repassword } = req.body;
